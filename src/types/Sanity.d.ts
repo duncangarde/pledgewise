@@ -204,6 +204,11 @@ declare global {
 				uid?: string
 			}
 		}
+
+		interface TallyModule extends Module<'tally-module'> {
+			formId?: string
+			label?: string
+		}
 	}
 }
 
