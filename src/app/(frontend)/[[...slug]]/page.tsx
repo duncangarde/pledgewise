@@ -8,6 +8,7 @@ import {
 	MODULES_QUERY,
 	GLOBAL_MODULE_PATH_QUERY,
 	TRANSLATIONS_QUERY,
+	getTags,
 } from '@/sanity/lib/queries'
 import { languages } from '@/lib/i18n'
 import errors from '@/lib/errors'
@@ -67,6 +68,7 @@ async function getPage(params: Params) {
 			${TRANSLATIONS_QUERY},
 		}`,
 		params: { slug },
+		tags: getTags('page', slug),
 	})
 
 	if (slug === 'index' && !page) throw new Error(errors.missingHomepage)

@@ -9,6 +9,7 @@ import {
 	IMAGE_QUERY,
 	MODULES_QUERY,
 	TRANSLATIONS_QUERY,
+	getTags,
 } from '@/sanity/lib/queries'
 import { languages, type Lang } from '@/lib/i18n'
 import errors from '@/lib/errors'
@@ -74,6 +75,7 @@ async function getPost(params: Params) {
 			${TRANSLATIONS_QUERY},
 		}`,
 		params: { slug },
+		tags: getTags('blog.post', slug),
 	})
 }
 

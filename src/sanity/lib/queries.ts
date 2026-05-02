@@ -1,4 +1,6 @@
 import { fetchSanityLive } from './fetch'
+import { getTags } from './tags'
+export { getTags } from './tags'
 import { groq } from 'next-sanity'
 import errors from '@/lib/errors'
 import { BLOG_DIR } from '@/lib/env'
@@ -156,6 +158,7 @@ export async function getSite() {
 				'ogimage': ogimage.asset->url
 			}
 		`,
+		tags: getTags('site'),
 	})
 
 	if (!site) throw new Error(errors.missingSiteSettings)

@@ -11,10 +11,12 @@ export async function fetchSanity<T = any>({
 	query,
 	params = {},
 	next,
+	tags,
 }: {
 	query: string
 	params?: Partial<QueryParams>
 	next?: QueryOptions['next']
+	tags?: string[]
 }) {
 	const preview = dev || (await draftMode()).isEnabled
 
@@ -29,6 +31,7 @@ export async function fetchSanity<T = any>({
 					token,
 					next: {
 						revalidate: 0,
+						tags,
 						...next,
 					},
 				}
@@ -36,7 +39,8 @@ export async function fetchSanity<T = any>({
 					perspective: 'published',
 					useCdn: true,
 					next: {
-						revalidate: 3600, // every hour
+						revalidate: 3600,
+						tags,
 						...next,
 					},
 				},
