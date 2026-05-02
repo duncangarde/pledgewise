@@ -17,8 +17,11 @@ export function CharacterCount({
 	return (
 		<Stack space={2}>
 			<Input
-				style={as === 'textarea' ? { resize: 'block', height: '4lh' } : {}}
 				{...elementProps}
+				style={{
+					...(elementProps.style || {}),
+					...(as === 'textarea' ? { resize: 'block', height: '4lh' } : {}),
+				}}
 			/>
 			<Flex>
 				{children}
